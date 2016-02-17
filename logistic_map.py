@@ -3,33 +3,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from scipy.integrate import odeint
+import time
 
-log_map = np.zeros(100)
-# print(log_map)
+import iterate
 
+start = time.time()
 
-# noinspection PyUnusedLocal
-def func(x, t, r):
-    return r * x * (1 - x)
+xx = iterate.iterate(.1, 10, 4)
 
-
-time = np.arange(10)
-
-y0 = .01
+print(np.array(xx))
 
 r0 = 3
 
-y = odeint(func, y0, time, args=(r0,))
-print(time)
-print([y0, func(y0, time, r0), func(func(y0, time, r0), time, r0)])
-print(y[:, 0])
-x = y[:, 0]
-xn = np.roll(x, -1)
-x = np.delete(x, -1)
+end = time.time()
+print(end - start)
+
+xn = np.roll(xx, -1)
+x = np.delete(xx, -1)
 xn = np.delete(xn, -1)
-plt.plot(xn, x)
-plt.xlabel('t')
-plt.ylabel('y')
+
+plt.plot(x, xn, marker='.')
+plt.xlabel('x[n]')
+plt.ylabel('x[n+1]')
 plt.show()
 
 #
