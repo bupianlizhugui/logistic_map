@@ -9,7 +9,7 @@ import iterate
 
 start = time.time()
 
-xx = iterate.iterate(.1, 10, 4)
+xx = iterate.iterate(.1, 100000, 3, 4, .3)
 
 print(np.array(xx))
 
@@ -22,7 +22,7 @@ xn = np.roll(xx, -1)
 x = np.delete(xx, -1)
 xn = np.delete(xn, -1)
 
-plt.plot(x, xn, marker='.')
+plt.scatter(x, xn, marker='.')
 plt.xlabel('x[n]')
 plt.ylabel('x[n+1]')
 plt.show()
